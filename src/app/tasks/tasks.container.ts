@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from "@angular/core";
 import {Observable} from "rxjs";
-import {Contractor} from "../types";
+import {ITask} from "../types";
 import {Store} from "@ngrx/store";
 import {DashLikeAHogSelectors} from "../Core/Store/dash-like-a-hog/selectors";
 import {DashLikeAHogActions} from "../Core/Store/dash-like-a-hog/actions";
@@ -8,16 +8,17 @@ import {DashLikeAHogState} from "../Core/Store/dash-like-a-hog/reducers";
 
 
 @Component({
-  selector: 'app-contractors',
+  selector: 'app-tasks',
   template: `
-    <app-contractors-page
-      [contractors]="contractors$ | async"
+    <app-tasks-page
+      [tasks]="$any(tasks$ | async)"
+      (delete)="deleteTask($event)"
       >
-    </app-contractors-page>
+    </app-tasks-page>
   `
 })
-export class ContractorsContainer implements OnInit, OnDestroy{
-  contractors$: Observable<Contractor[]>;
+export class TasksContainer implements OnInit, OnDestroy{
+  tasks$: Observable<ITask[]>;
 
 
   constructor(
@@ -25,13 +26,17 @@ export class ContractorsContainer implements OnInit, OnDestroy{
   )
   {
     // @ts-ignore
-    this.contractors$ = this.store.select(DashLikeAHogSelectors.contractors);
+    this.tasks$ = this.store.select(DashLikeAHogSelectors.tasks);
 
-    this.store.dispatch(new DashLikeAHogActions.GetContractorsRequest(''))
+    this.store.dispatch(new DashLikeAHogActions.GetTasksRequest(''))
   }
 
   ngOnDestroy() {
   }
   ngOnInit() {
+  }
+
+  deleteTask(id: string) {
+    this.store.dispatch(new DashLikeAHogActions.DeleteTaskRequest(id));
   }
 }

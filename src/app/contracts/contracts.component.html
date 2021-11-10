@@ -1,0 +1,37 @@
+<div class="users">
+  <button (click)="createContract()" color="primary" mat-icon-button class="add">
+    <mat-icon>control_point</mat-icon>
+  </button>
+  <table [dataSource]="contracts" class="table" mat-table>
+
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="id">
+      <th *matHeaderCellDef mat-header-cell>Contract Id</th>
+      <td *matCellDef="let element" mat-cell>{{element.id}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th *matHeaderCellDef mat-header-cell>Actions</th>
+      <td *matCellDef="let element" mat-cell>
+        <div class="actions">
+          <a></a>
+          <button color="primary" mat-icon-button>
+            <mat-icon (click)="openEditor(element)">border_color</mat-icon>
+          </button>
+          <button color="primary" mat-icon-button>
+            <mat-icon (click)="onDelete(element)">delete</mat-icon>
+          </button>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+    <tr
+      *matRowDef="let row; columns: displayedColumns;"
+      mat-row
+    ></tr>
+  </table>
+</div>
+
+

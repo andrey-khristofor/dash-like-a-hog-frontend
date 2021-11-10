@@ -1,12 +1,42 @@
 import {Action} from "@ngrx/store";
 
-export interface Contractor {
+export interface User {
   name: string;
-  _id: string;
-  phoneNumber: string;
-  email: string;
-  specializationIds: string[],
-  rating: number;
+  id: string;
+  phoneNumber?: string;
+  email?: string;
+  rating?: number,
+  Roles?: string[],
+  specializationIds: string[]
+}
+
+export interface Specialization {
+  name: string;
+  id: string;
+  popularity: number;
+}
+
+export interface Currency {
+  name: string;
+  id: string;
+  currencyToUsd: number;
+}
+
+export interface ITask {
+  specializationId: string;
+  price: number;
+  currencyId: string;
+  deadline: string;
+  description: string;
+  photoUrl?: string[]
+  id: string;
+}
+
+export interface Contract {
+  id: string;
+  customerId: string;
+  contractorId: string;
+  taskId: string;
 }
 
 export type LoadingStatus = { loading: false, loaded: false, error: null }

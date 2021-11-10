@@ -1,0 +1,17 @@
+<div>
+  <mat-spinner *ngIf="!currency"></mat-spinner>
+  <div *ngIf="currency" class="content">
+    {{mode}}
+    <form [formGroup]="form" class="form">
+      <button mat-button color="primary" (click)="save()" [disabled]="!isSaveEnabled">Save</button>
+      <mat-form-field  appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="Name">
+      </mat-form-field>
+      <mat-form-field  appearance="fill">
+        <mat-label>Currency to USD</mat-label>
+        <input matInput formControlName="CurrencyToUsd" type="number">
+      </mat-form-field>
+    </form>
+  </div>
+</div>

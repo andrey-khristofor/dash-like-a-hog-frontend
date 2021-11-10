@@ -1,0 +1,49 @@
+<div class="users">
+  <button (click)="createTask()" color="primary" mat-icon-button class="add">
+    <mat-icon>control_point</mat-icon>
+  </button>
+  <table [dataSource]="tasks" class="table" mat-table>
+    <!-- Position Column -->
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="price">
+      <th *matHeaderCellDef mat-header-cell>Price</th>
+      <td *matCellDef="let element" mat-cell>{{element.price}}</td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="deadline">
+      <th *matHeaderCellDef mat-header-cell>Deadline</th>
+      <td *matCellDef="let element" mat-cell>{{element.deadline}}</td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="description">
+      <th *matHeaderCellDef mat-header-cell>Description</th>
+      <td *matCellDef="let element" mat-cell>{{element.description}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th *matHeaderCellDef mat-header-cell>Actions</th>
+      <td *matCellDef="let element" mat-cell>
+        <div class="actions">
+          <a></a>
+          <button color="primary" mat-icon-button>
+            <mat-icon (click)="openEditor(element)">border_color</mat-icon>
+          </button>
+          <button color="primary" mat-icon-button>
+            <mat-icon (click)="onDelete(element)">delete</mat-icon>
+          </button>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+    <tr
+      *matRowDef="let row; columns: displayedColumns;"
+      mat-row
+    ></tr>
+  </table>
+</div>
+
+

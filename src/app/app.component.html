@@ -1,10 +1,22 @@
-<h1>Angular Router App</h1>
-<!-- This nav gives you links to click, which tells the router which route to use (defined in the routes constant in  AppRoutingModule) -->
-<nav>
-  <ul>
-    <li><a routerLink="/contractors" routerLinkActive="active">Contractors</a></li>
-    <li><a routerLink="/customers" routerLinkActive="active">Customers</a></li>
-  </ul>
-</nav>
+<mat-toolbar>
+  <span>Dash like a hog</span>
+  <span class="spacer"></span>
+  <a routerLink="/users" routerLinkActive="active" mat-button>
+  Users
+  </a>
+  <a routerLink="/specializations" routerLinkActive="active" mat-button>
+    Specializations
+  </a>
+  <a routerLink="/currencies" routerLinkActive="active" mat-button>
+    Currencies
+  </a>
+  <a routerLink="/tasks" routerLinkActive="active" mat-button>
+    Tasks
+  </a>
+  <a routerLink="/contracts" routerLinkActive="active" mat-button>
+    Contracts
+  </a>
+
+</mat-toolbar>
 <!-- The routed views render in the <router-outlet>-->
 <router-outlet></router-outlet>

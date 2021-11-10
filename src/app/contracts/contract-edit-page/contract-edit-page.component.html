@@ -1,0 +1,40 @@
+<div>
+  <mat-spinner *ngIf="!contract"></mat-spinner>
+  <div *ngIf="contract" class="content">
+    {{mode}}
+    <form [formGroup]="form" class="form">
+      <button mat-button color="primary" (click)="save()" [disabled]="!isSaveEnabled">Save</button>
+      <mat-form-field appearance="fill">
+        <mat-label>Сustomer</mat-label>
+        <input type="text"
+               matInput
+               formControlName="Customer"
+               [matAutocomplete]="customer">
+        <mat-autocomplete #customer="matAutocomplete">
+          <mat-option *ngFor="let  customer of  customersList" [value]="customer.name">
+            {{customer.name}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Contractor</mat-label>
+        <input type="text"
+               matInput
+               formControlName="Contractor"
+               [matAutocomplete]="contractor">
+        <mat-autocomplete #contractor="matAutocomplete">
+          <mat-option *ngFor="let  contractor of  contractorsList" [value]="contractor.name">
+            {{contractor.name}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <mat-form-field appearance="fill" >
+        <mat-label>Task Id</mat-label>
+        <mat-select formControlName="TaskId">
+          <mat-option *ngFor="let task of tasksList" [value]="task.id">{{task.id}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </form>
+  </div>
+</div>

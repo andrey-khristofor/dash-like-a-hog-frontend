@@ -1,0 +1,28 @@
+<div>
+  <mat-spinner *ngIf="!user"></mat-spinner>
+  <div *ngIf="user" class="content">
+    {{mode}}
+    <form [formGroup]="form" class="form">
+      <button mat-button color="primary" (click)="save()" [disabled]="!isSaveEnabled">Save</button>
+      <mat-form-field  appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="Name">
+      </mat-form-field>
+      <mat-form-field  appearance="fill">
+        <mat-label>Phone</mat-label>
+        <input matInput formControlName="PhoneNumber" type="number">
+      </mat-form-field>
+      <mat-form-field  appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="Email" type="email">
+      </mat-form-field>
+      <mat-form-field appearance="fill" >
+        <mat-label>Specializations</mat-label>
+        <mat-select formControlName="SpecializationIds" multiple>
+          <mat-option *ngFor="let specialization of specializationList" [value]="specialization.id">{{specialization.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </form>
+  </div>
+</div>
